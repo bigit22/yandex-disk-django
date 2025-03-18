@@ -50,7 +50,11 @@ Create a .env file in the root of your project and add the following lines:
    YA_CLIENT_ID=your_client_id
    YA_CLIENT_SECRET=your_client_secret
 
-5. Start the server
+5. Migrate (for first launch)
+   ```python
+   python3 manage.py migrate
+
+7. Start the server
 
    ```python
    python3 manage.py runserver
