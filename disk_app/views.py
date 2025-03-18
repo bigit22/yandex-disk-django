@@ -102,13 +102,13 @@ def index(request: HttpRequest) -> HttpResponse:
 
 def list_files(request: HttpRequest) -> HttpResponse:
     """
-    Lists files from a public folder.
+        Lists files from a public folder.
 
-    Args:
-        request: HTTP request containing the access token and public key.
+        Args:
+            request: HTTP request containing the access token and public key.
 
-    Returns:
-        HttpResponse: Rendered file list or redirect to main page.
+        Returns:
+            HttpResponse: Rendered file list or redirect to main page.
     """
     access_token: Optional[str] = request.session.get('access_token')
 
@@ -117,7 +117,7 @@ def list_files(request: HttpRequest) -> HttpResponse:
 
     if request.method == 'POST':
         public_key: str = request.POST.get('public_key')
-        cache_key = f'file_list_{public_key}_{access_token}'
+        cache_key: str = f'file_list_{public_key}_{access_token}'
         files: List[Dict[str, Any]] = cache.get(cache_key)
 
         if files is None:
@@ -132,7 +132,7 @@ def list_files(request: HttpRequest) -> HttpResponse:
     if request.method == 'GET':
         public_key: str = request.GET.get('public_key')
         media_type: str = request.GET.get('media_type', '')
-        cache_key = f'file_list_{public_key}_{access_token}'
+        cache_key: str = f'file_list_{public_key}_{access_token}'
         files: List[Dict[str, Any]] = cache.get(cache_key)
 
         if files is None:
