@@ -22,6 +22,7 @@ This project demonstrates how to integrate Yandex.Disk API with a Django applica
 - Python 3.x
 - Django == 4.2.20
 - Requests library
+- python-dotenv
 
 ## Installation
 
