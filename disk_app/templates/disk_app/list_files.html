@@ -82,6 +82,22 @@
 <body>
 
     <h1>Список файлов</h1>
+
+    <!-- Форма фильтрации файлов -->
+    <form method="get" action="{% url 'list_files' %}">
+        {% csrf_token %}
+        <input type="hidden" name="public_key" value="{{ public_key }}">
+        <label for="media_type">Фильтровать по типу:</label>
+        <select id="media_type" name="media_type">
+            <option value="">Все</option>
+            <option value="document">Документы</option>
+            <option value="image">Изображения</option>
+            <option value="audio">Аудио</option>
+            <option value="video">Видео</option>
+        </select>
+        <button type="submit">Применить фильтр</button>
+    </form>
+
     <form method="post" action="{% url 'list_files' %}">
         {% csrf_token %}
         <input type="hidden" name="public_key" value="{{ public_key }}">

@@ -28,11 +28,13 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             text-align: center;
         }
 
         input[type="text"] {
+            box-sizing: border-box; /* Чтобы избежать выхода за пределы */
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
