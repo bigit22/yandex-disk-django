@@ -74,4 +74,4 @@ Make sure to set the following environment variables to store your sensitive dat
     YA_CLIENT_SECRET: Your Yandex OAuth client secret.
 
 ## License
-
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
