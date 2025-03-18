@@ -34,7 +34,7 @@ This project demonstrates how to integrate Yandex.Disk API with a Django applica
 2. Create a virtual environment:
 
    ```python
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
 3. Install the required packages:
@@ -52,7 +52,7 @@ Create a .env file in the root of your project and add the following lines:
 5. Start the server
 
    ```python
-   python manage.py runserver
+   python3 manage.py runserver
 
 ## Usage
 
