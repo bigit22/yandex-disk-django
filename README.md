@@ -73,7 +73,6 @@ Make sure to set the following environment variables to store your sensitive dat
 
     YA_CLIENT_ID: Your Yandex OAuth client ID.
     YA_CLIENT_SECRET: Your Yandex OAuth client secret.
-    YA_REDIRECT_URI: The URI Yandex should redirect to after authorization.
 
 ## License
 
