@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список файлов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1F2A44;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="hidden"] {
+            display: none;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s;
+        }
+
+        li:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-info {
+            flex-grow: 1; /* Позволяет тексту занимать всё доступное пространство */
+            margin-right: 20px; /* Отступ справа для кнопки */
+        }
+
+        button {
+            background-color: #0052CC;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #003d99;
+        }
+
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column; /* Вертикальное выравнивание на мобильных устройствах */
+                align-items: flex-start;
+            }
+
+            button {
+                width: 100%; /* Кнопка занимает всю ширину на мобильных устройствах */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Список файлов</h1>
+    <form method="post" action="{% url 'list_files' %}">
+        {% csrf_token %}
+        <input type="hidden" name="public_key" value="{{ public_key }}">
+        <button type="submit">Обновить список файлов</button>
+    </form>
+    
+    <ul>
+        {% for item in files %}
+            <li>
+                <div class="file-info">
+                    <strong>
+                        {% if item.type == 'dir' %}
+                            Папка: {{ item.name }}
+                        {% else %}
+                            Файл: {{ item.name }}
+                        {% endif %}
+                    </strong>
+                    <br>
+                    {% if item.type != 'dir' %}
+                        <span>Размер: {{ item.size }} KB</span> <br>
+                        <span>Дата создания: {{ item.created }}</span>
+                    {% else %}
+                        <span>Дата создания: {{ item.created }}</span>
+                    {% endif %}
+                </div>
+                {% if item.type != 'dir' %}
+                    <form method="post" action="{% url 'download_file' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="public_key" value="{{ public_key }}">
+                        <input type="hidden" name="file_url" value="{{ item.public_url }}">
+                        <button type="submit">Скачать</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    
+    {% if not files %}
+        <p>Файлы отсутствуют.</p>
+    {% endif %}
+
+</body>
+</html>
