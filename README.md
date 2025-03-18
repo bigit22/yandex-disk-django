@@ -54,8 +54,7 @@ Create a .env file in the root of your project and add the following lines:
    ```python
    python3 manage.py migrate
 
-7. Start the server
-
+6. Start the server
    ```python
    python3 manage.py runserver
 
