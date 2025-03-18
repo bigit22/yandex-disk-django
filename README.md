@@ -41,7 +41,7 @@ This project demonstrates how to integrate Yandex.Disk API with a Django applica
 3. Install the required packages:
 
    ```python
-   pip isntall -r requirements.txt
+   pip install -r requirements.txt
 
 4. Configure your Yandex OAuth credentials using environment variables. 
 Create a .env file in the root of your project and add the following lines:
